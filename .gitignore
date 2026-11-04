@@ -39,9 +39,7 @@ funtbl
 funtools.ds9
 funtools.pc
 gcat
-configure
 gnu/_funsort
 filter/tfilt
-util/NaN.h
 autom4te.cache
 a.out.dSYM

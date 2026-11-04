@@ -1,7 +1,7 @@
 #	This file is an input file used by the GNU "autoconf" program to
 #	generate the file "configure", which is run during XPA installation
 #	to configure the system for the local environment.
-AC_INIT(filter, 1.1, saord@cfa.harvard.edu, filter)
+AC_INIT(filter, 1.2, saord@cfa.harvard.edu, filter)
 
 AC_CONFIG_HEADERS([conf.h])
 AC_CONFIG_SRCDIR(./filter.h)
@@ -21,7 +21,9 @@ AC_C_LONG_LONG
 
 AC_PROG_RANLIB
 
-AC_HEADER_STDC
+AC_CHECK_INCLUDES_DEFAULT
+AC_PROG_EGREP
+AC_DEFINE([STDC_HEADERS], [1], [Define to 1 if all C89 standard headers are available.])
 AC_CHECK_HEADERS(malloc.h)
 AC_CHECK_HEADERS(getopt.h)
 AC_CHECK_HEADERS(values.h)
@@ -150,7 +152,7 @@ PRE=""
 POST="|\& cat"
 case $host_os in
     *cygwin*|*Cygwin* )
-        AC_DEFINE([HAVE_CYGWIN])
+        AC_DEFINE([HAVE_CYGWIN], [1], [Define to 1 when building on Cygwin.])
         AC_MSG_RESULT(flagging Cygwin)
 	PRE="sh -c {"
 	POST="}"
@@ -158,7 +160,7 @@ case $host_os in
     *mingw32*|*Mingw32*)
         CFLAGS="$CFLAGS -mconsole -D_WSTRING_DEFINED=1"
 	EXTRA_LIBS="$EXTRA_LIBS -lwsock32"
-        AC_DEFINE([HAVE_MINGW32])
+        AC_DEFINE([HAVE_MINGW32], [1], [Define to 1 when building on MinGW.])
         AC_MSG_RESULT(flagging MinGW)
         ;;
     *osf*|*Osf*)
